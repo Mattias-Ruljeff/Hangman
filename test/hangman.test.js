@@ -6,13 +6,13 @@ const Hangman = require('../lib/hangman')
 const sut = new Hangman()
 
 describe('shouldGameStart', function () {
-  const enteredInput = 'Play game'
+  let enteredInput = 'Play game'
 
   it('Should return true if enteredInput is "Play game"', function () {
     assert.isTrue(sut.shouldGameStart(enteredInput))
   })
   it('Should return false if enteredInput is not "Play game"', function () {
-    const enteredInput = 'Quit'
+    enteredInput = 'Quit'
     assert.isFalse(sut.shouldGameStart(enteredInput))
   })
 })
@@ -46,8 +46,10 @@ describe('checkWrongGuesses', function () {
 describe('highscore', function () {
   const enteredName = 'Mats'
   const numberOfTries = 3
+  const highscoreArr = []
 
-  it('Should return true if the player has guessed more than 2 times.', function () {
-    assert.isTrue(sut.addToHighscore(enteredName, numberOfTries))
+  it('Should return true if the player has guessed more than 2 times and is added to the highscoreArr.', function () {
+    assert.isTrue(sut.addToHighscore(enteredName, numberOfTries, highscoreArr))
+    assert.isNotEmpty(highscoreArr)
   })
 })
