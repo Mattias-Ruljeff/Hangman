@@ -6,34 +6,48 @@ const Hangman = require('../lib/hangman')
 const sut = new Hangman()
 
 describe('shouldGameStart', function () {
-  it('Should return true if "Play game" is the input', function () {
-    assert.isTrue(sut.shouldGameStart('Play game'))
+  const enteredInput = 'Play game'
+
+  it('Should return true if enteredInput is "Play game"', function () {
+    assert.isTrue(sut.shouldGameStart(enteredInput))
   })
-  it('Should return false if any other input than "Play game"', function () {
-    assert.isFalse(sut.shouldGameStart('Quit'))
+  it('Should return false if enteredInput is not "Play game"', function () {
+    const enteredInput = 'Quit'
+    assert.isFalse(sut.shouldGameStart(enteredInput))
   })
 })
 
 describe('checkLetter', function () {
-  it('Should return true if the input is the same as the letter in the wordToGuess', function () {
-    assert.isTrue(sut.checkLetter('a', 'a'))
+  let enteredLetter = 'a'
+  const givenLetterToCheckWith = 'a'
+
+  it('Should return true if enteredLetter is the same as givenLetterToCheckWith', function () {
+    assert.isTrue(sut.checkLetter(enteredLetter, givenLetterToCheckWith))
   })
-  it('Should return false if the input is not the same as the letter in the wordToGuess', function () {
-    assert.isFalse(sut.checkLetter('a', 'b'))
+  it('Should return false if enteredLetter is not the same as givenLetterToCheckWith', function () {
+    enteredLetter = 'b'
+    assert.isFalse(sut.checkLetter(enteredLetter, givenLetterToCheckWith))
   })
 })
 
 describe('checkWrongGuesses', function () {
-  it('Should return a unicode-hangman and true if if numberOfWrongGuesses is a smaller number than maxGuesses', function () {
-    assert.isTrue(sut.checkWrongGuesses(1, 8))
+  let numberOfWrongGuesses = 7
+  const maximumNumberOfWrongGuesses = 8
+
+  it('Should return true if numberOfWrongGuesses is a smaller number than maximumNumberOfWrongGuesses', function () {
+    assert.isTrue(sut.checkWrongGuesses(numberOfWrongGuesses, maximumNumberOfWrongGuesses))
   })
   it('Should return false if numberOfWrongGuesses is a larger number than maxGuesses', function () {
-    assert.isFalse(sut.checkWrongGuesses(9, 8))
+    numberOfWrongGuesses = 9
+    assert.isFalse(sut.checkWrongGuesses(numberOfWrongGuesses, maximumNumberOfWrongGuesses))
   })
 })
 
 describe('highscore', function () {
-  it('Should return with the player in the highscorelist if the player has more then 2 tries.', function () {
-    assert.isTrue(sut.addToHighscore('Mats', 3))
+  const enteredName = 'Mats'
+  const numberOfTries = 3
+
+  it('Should return true if the player has guessed more than 2 times.', function () {
+    assert.isTrue(sut.addToHighscore(enteredName, numberOfTries))
   })
 })
