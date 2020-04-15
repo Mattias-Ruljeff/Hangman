@@ -19,14 +19,14 @@ describe('shouldGameStart', function () {
 
 describe('checkLetter', function () {
   let enteredLetter = 'a'
-  const givenLetterToCheckWith = 'a'
+  const givenWordToCheckWith = 'a'
 
   it('Should return true if enteredLetter is the same as givenLetterToCheckWith', function () {
-    assert.isTrue(sut.checkLetter(enteredLetter, givenLetterToCheckWith))
+    assert.isTrue(sut.checkLetter(enteredLetter, givenWordToCheckWith))
   })
   it('Should return false if enteredLetter is not the same as givenLetterToCheckWith', function () {
     enteredLetter = 'b'
-    assert.isFalse(sut.checkLetter(enteredLetter, givenLetterToCheckWith))
+    assert.isFalse(sut.checkLetter(enteredLetter, givenWordToCheckWith))
   })
 })
 
@@ -48,7 +48,7 @@ describe('highscore', function () {
   const numberOfTries = 3
   const highscoreArr = []
 
-  it('Should return true if the player has guessed more than 2 times and is added to the highscoreArr.', function () {
+  it('Should return true if the user has guessed more than 2 times and is added to the highscoreArr.', function () {
     assert.isTrue(sut.addToHighscore(enteredName, numberOfTries, highscoreArr))
     assert.isNotEmpty(highscoreArr)
   })
